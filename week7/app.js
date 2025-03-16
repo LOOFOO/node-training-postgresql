@@ -14,8 +14,8 @@ const uploadRouter = require('./routes/upload')
 
 const app = express()
 app.use(cors())
-app.use(express.json())
-app.use(express.urlencoded({ extended: false }))
+app.use(express.json({ limit: '10kb' })) // 限制 JSON 最大為 10KB
+app.use(express.urlencoded({ extended: false, limit: '10kb' })) // 限制 URL-encoded 資料最大為 10KB
 app.use(pinoHttp({
   logger,
   serializers: {
